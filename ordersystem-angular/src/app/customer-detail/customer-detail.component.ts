@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Customer } from '../customer';
 
 @Component({
@@ -8,10 +8,19 @@ import { Customer } from '../customer';
 })
 export class CustomerDetailComponent implements OnInit {
   @Input() customer: Customer;
+  @Output() cancelEvent = new EventEmitter<Customer>();
+  @Output() saveEvent = new EventEmitter<Customer>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  cancelDetails(customer: Customer) {
+    this.cancelEvent.emit(customer);
+  }
+
+  saveDetails(customer: Customer) {
+    this.saveEvent.emit(customer);
+  }
 }

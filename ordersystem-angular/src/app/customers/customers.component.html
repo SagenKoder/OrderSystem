@@ -1,11 +1,30 @@
-<p>customers works!</p>
 
-<h2>Customers</h2>
-<ul class="customers">
-  <li *ngFor="let customer of customers" [class.selected]="customer === selectedCustomer" (click)="onSelect(customer)">
-    <span class="badge">{{customer.id}}</span> {{customer.name}}
-  </li>
-</ul>
+<div class="">
 
-<app-customer-detail [customer]="selectedCustomer"></app-customer-detail>
+  <div class="d-flex">
 
+    <div>
+
+      <h2 class="text-center">Customers</h2>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let customer of customers" [class.selected]="customer === selectedCustomer" (click)="onSelect(customer)">
+            <strong>{{customer.name | titlecase}}</strong><br/>
+            <span>Email: {{customer.email}}</span><br/>
+            <span>Name: {{customer.phone}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <h2 class="text-center">Details</h2>
+      <app-customer-detail (cancelEvent)="cancelDetail($event)" (saveEvent)="saveDetail($event)" [customer]="selectedCustomer"></app-customer-detail>
+    </div>
+
+  </div>
+  <div class="container">
+    <app-customer-detail-orders [customer]="selectedCustomer"></app-customer-detail-orders>
+  </div>
+
+</div>

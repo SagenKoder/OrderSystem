@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CustomersComponent } from './customers/customers.component';
 import { FormsModule } from '@angular/forms';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { CustomerDetailOrdersComponent } from './customer-detail-orders/customer-detail-orders.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomersComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    CustomerDetailOrdersComponent
   ],
     imports: [
         BrowserModule,

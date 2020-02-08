@@ -12,6 +12,14 @@ export class CustomersComponent implements OnInit {
   selectedCustomer: Customer;
   customers: Customer[];
 
+  saveDetail(customer: Customer) {
+    console.log(customer);
+  }
+
+  cancelDetail(customer: Customer) {
+    this.selectedCustomer = null;
+  }
+
   constructor(private customerService: CustomerService) {
   }
 
@@ -20,7 +28,9 @@ export class CustomersComponent implements OnInit {
   }
 
   getCustomers(): void {
-    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+    this.customerService.getCustomers().then((customers: Customer[]) => {
+      this.customers = customers;
+    });
   }
 
   onSelect(customer: Customer) {

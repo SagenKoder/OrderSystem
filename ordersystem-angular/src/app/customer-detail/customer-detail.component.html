@@ -1,11 +1,21 @@
 <div *ngIf="customer">
 
-  <h2>{{customer.name | titlecase}} details</h2>
-  <div><span>id: </span>{{customer.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="customer.name" placeholder="name"/>
-    </label>
+  <h2>{{customer.name | titlecase}}</h2>
+
+  <div class="form-group">
+    <label for="customerName">Name</label>
+    <input [(ngModel)]="customer.name" type="text" class="form-control" id="customerName" aria-describedby="Customers Name" placeholder="Customers Name">
   </div>
+  <div class="form-group">
+    <label for="customerPhone">Phone</label>
+    <input [(ngModel)]="customer.phone" type="text" class="form-control" id="customerPhone" aria-describedby="Customers Phone" placeholder="Customers Phone">
+  </div>
+  <div class="form-group">
+    <label for="customerEmail">Email</label>
+    <input [(ngModel)]="customer.email" type="text" class="form-control" id="customerEmail" aria-describedby="Customers Email" placeholder="Customers Email">
+  </div>
+  <button type="submit" class="btn btn-primary mr-1 mb-1" (click)="saveDetails(customer)">Save</button>
+  <button type="submit" class="btn btn-danger mr-1 mb-1" (click)="cancelDetails(customer)">Cancel</button>
+  <button type="submit" class="btn btn-success mb-1 float-right">View Customers Orders</button>
 
 </div>

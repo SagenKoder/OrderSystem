@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Customer } from './customer';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,38 @@ export class CustomerService {
   private url = 'http://localhost:8080/customer/';
 
   constructor(private http: HttpClient) { }
-  getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.url);
+
+  getCustomers() {
+    return this.http.get<Customer[]>(this.url).toPromise();
+  }
+
+  getCustomerById(customerId) {
+    return this.http.get<Customer>(
+      this.url + customerId,
+      { observe: 'response' }
+    ).toPromise();
+  }
+
+  createCustomer(customer) {
+    return this.http.post<Customer>(
+      this.url,
+      customer,
+      { observe: 'response' }
+    ).toPromise();
+  }
+
+  updateCustomer(customer, customerId) {
+    return this.http.put<Customer>(
+      this.url + customerId,
+      customer,
+      { observe: 'response' }
+    ).toPromise();
+  }
+
+  deleteCustomer(customerId) {
+    return this.http.delete<Customer>(
+      this.url + customerId,
+      { observe: 'response' }
+    ).toPromise();
   }
 }
