@@ -1,0 +1,55 @@
+<div *ngIf="order">
+
+  <h2>{{(order.id > 0 ? 'Edit ' + order.customer.name + '\'s order' : "New order") | titlecase}}</h2>
+
+  <div class="form-group">
+    <label for="orderDate">Date</label>
+    <input [(ngModel)]="order.date" type="date" class="form-control" id="orderDate" aria-describedby="Date" placeholder="Date">
+  </div>
+  <div class="form-group">
+    <label for="orderService">Service type</label>
+    <select [(ngModel)]="order.service" type="select" class="form-control" id="orderService" aria-describedby="Service type" placeholder="Service type">
+      <option>MOVING</option>
+      <option>PACKING</option>
+      <option>CLEANING</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <div class="form-group">
+      <label for="orderAddressLine1">Address</label>
+      <input [(ngModel)]="order.address.line1" type="text" class="form-control" id="orderAddressLine1" aria-describedby="Address" placeholder="Address">
+    </div>
+    <div class="form-group d-flex">
+      <div class="form-group">
+        <label for="orderAddressZip">Zip code (postnummer)</label>
+        <input [(ngModel)]="order.address.line1" type="number" maxlength="4" class="form-control" id="orderAddressZip" aria-describedby="Zip code (postnummer)" placeholder="0000">
+      </div>
+      <div class="form-group">
+        <label for="orderAddressArea">Area (poststed)</label>
+        <input [(ngModel)]="order.address.line1" readonly disabled type="number" maxlength="4" class="form-control" id="orderAddressArea" aria-describedby="Area (poststed)" placeholder="Area (poststed)">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="order.service === 'MOVING'" class="form-group">
+    <div class="form-group">
+      <label for="orderAddressLine1">Destination</label>
+      <input [(ngModel)]="order.destination.line1" type="text" class="form-control" id="orderDestinationLine1" aria-describedby="Destination" placeholder="Destination">
+    </div>
+    <div class="form-group d-flex">
+      <div class="form-group">
+        <label for="orderAddressZip">Zip code (postnummer)</label>
+        <input [(ngModel)]="order.destination.line1" type="number" maxlength="4" class="form-control" id="orderDestinationZip" aria-describedby="Zip code (postnummer)" placeholder="0000">
+      </div>
+      <div class="form-group">
+        <label for="orderAddressArea">Area (poststed)</label>
+        <input [(ngModel)]="order.destination.line1" readonly disabled type="number" maxlength="4" class="form-control" id="orderDestinationArea" aria-describedby="Area (poststed)" placeholder="Area (poststed)">
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary mr-1 mb-1" >Save</button>
+  <button type="submit" class="btn btn-danger mr-1 mb-1" >Cancel</button>
+  <button *ngIf="order.id > 0"  type="submit" class="btn btn-success mb-1 float-right">
+    Customers Orders
+  </button>
+</div>

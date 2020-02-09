@@ -1,7 +1,7 @@
 <div>
-  <h2>Customers orders</h2>
-  <ul class="list-group w-100" style="width: 100%; overflow-x: hidden; height: 100%">
-    <li class="list-group-item w-100" *ngFor="let order of orders" [class.selected]="order === selectedOrder" (click)="onSelect(order)">
+  <h2>All orders</h2>
+  <ul class="list-group w-100 high" style="width: 100%; overflow-x: hidden; height: 100%">
+    <li class="list-group-item w-100 high" *ngFor="let order of orders" [class.selected]="order === selectedOrder" (click)="onSelect(order)">
       <strong>{{order.customer.name | titlecase}}</strong><br/>
       <span>Date: {{order.date| date }}</span><br/>
       <span>Service: {{order.service | titlecase}}</span><br/>

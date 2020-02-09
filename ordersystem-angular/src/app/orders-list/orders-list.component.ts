@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Order} from '../model/order';
 import {Customer} from '../model/customer';
 
@@ -11,6 +11,7 @@ export class OrdersListComponent implements OnInit {
 
   @Input() orders: Order[];
   @Input() customer: Customer;
+  @Output() orderClicked = new EventEmitter<Order>();
 
   selectedOrder = false;
 
@@ -21,5 +22,6 @@ export class OrdersListComponent implements OnInit {
 
   onSelect(order: Order) {
     console.log('Selected order ' + order);
+    this.orderClicked.emit(order);
   }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -22,6 +23,35 @@ public class OrderService {
         this.orderRepository = orderRepository;
         this.postNummerService = postNummerService;
         this.customerService = customerService;
+    }
+
+    public List<OrderPlacement> findAll() {
+        return dummyFindAll();
+//        return orderRepository.findAllByOrderByDate();
+    }
+
+    public List<OrderPlacement> findAllBy(Customer customer) {
+        return orderRepository.findAllByCustomerOrderByDate(customer);
+    }
+
+    public OrderPlacement create(OrderPlacement orderPlacement) {
+        orderPlacement.setId(-1);
+        return orderRepository.save(orderPlacement);
+    }
+
+    public OrderPlacement update(OrderPlacement orderPlacement, long id) {
+        orderPlacement.setId(id);
+        return orderRepository.save(orderPlacement);
+    }
+
+    public Optional<OrderPlacement> findById(long id) {
+        return orderRepository.findById(id);
+    }
+
+    public Optional<OrderPlacement> delete(long id) {
+        Optional<OrderPlacement> order = orderRepository.findById(id);
+        order.ifPresent(orderPlacement -> orderRepository.delete(orderPlacement));
+        return order;
     }
 
     // return dummy data

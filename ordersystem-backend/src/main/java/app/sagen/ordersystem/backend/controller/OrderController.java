@@ -23,4 +23,9 @@ public class OrderController {
     public List<OrderPlacement> allByCustomerId(@PathVariable long customerId) {
         return orderService.dummyFindAllByCustomer(customerId);
     }
+
+    @GetMapping("")
+    public List<OrderPlacement> all() {
+        return orderService.findAll();
+    }
 }

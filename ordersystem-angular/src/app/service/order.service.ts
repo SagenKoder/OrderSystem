@@ -17,4 +17,10 @@ export class OrderService {
     ).toPromise();
   }
 
+  getOrders() {
+    return this.http.get<Order[]>(
+      this.url
+    ).toPromise();
+  }
+
 }
