@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/customer")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("customer")
+@CrossOrigin
 public class CustomerController {
 
     private CustomerService customerService;
@@ -61,6 +61,16 @@ public class CustomerController {
     }
 
     /*
+     * POST /customer/
+     * Return 200 and the updated Customer if OK
+     */
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Customer> post(@RequestBody Customer customer) {
+        Customer created = customerService.create(customer);
+        return new ResponseEntity<>(created, HttpStatus.OK);
+    }
+
+    /*
      * DELETE /customer/{id}
      * Returns 404 if not found
      * Returns 200 and the deleted Customer if OK
@@ -71,5 +81,14 @@ public class CustomerController {
         if(customer.isEmpty()) return ResponseEntity.notFound().build();
         customerService.delete(id);
         return new ResponseEntity<>(customer.get(), HttpStatus.OK);
+    }
+
+    /*
+     * GET /customer/search/{filter}
+     * Returns 200 and all matching customers
+     */
+    @GetMapping(value = "search/{filter}")
+    public ResponseEntity<List<Customer>> search(@PathVariable(required = false) String filter) {
+        return new ResponseEntity<>(customerService.search(filter), HttpStatus.OK);
     }
 }

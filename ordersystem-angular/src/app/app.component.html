@@ -1,7 +1,7 @@
 <nav class="nav nav-tabs nav-justified navbar-dark container">
-  <a class="nav-item nav-link active" href="#">Customers</a>
-  <a class="nav-item nav-link" href="#">Orders</a>
-  <a class="nav-item nav-link disabled" href="#">Admin</a>
+  <a class="nav-item nav-link"  routerLink="/order" routerLinkActive="active">Orders</a>
+  <a class="nav-item nav-link active" routerLink="/customer" routerLinkActive="active">Customers</a>
+  <!--  <a class="nav-item nav-link disabled" href="#">Admin</a>-->
 </nav>
 
-<app-customers></app-customers>
+<router-outlet></router-outlet>

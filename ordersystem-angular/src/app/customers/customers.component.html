@@ -1,13 +1,27 @@
 
 <div class="">
 
-  <div class="d-flex">
+    <div class="container">
+      <div class="row">
 
-    <div>
+    <div class="col-md-6">
 
       <h2 class="text-center">Customers</h2>
-      <div class="panel-body">
-        <ul class="list-group">
+      <div class="" style="">
+
+        <div class="">
+          <label class="sr-only" for="customerFilter">Search for name/email/phone</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                Filter
+              </div>
+            </div>
+            <input [ngModel]="searchText" (ngModelChange)="search($event)" type="text" class="form-control" id="customerFilter" placeholder="Search for name/email/phone">
+          </div>
+        </div>
+
+        <ul class="list-group" style="width: 100%; overflow-x: hidden; height: 100%">
           <li class="list-group-item" *ngFor="let customer of customers" [class.selected]="customer === selectedCustomer" (click)="onSelect(customer)">
             <strong>{{customer.name | titlecase}}</strong><br/>
             <span>Email: {{customer.email}}</span><br/>
@@ -17,14 +31,23 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="col-md-6">
       <h2 class="text-center">Details</h2>
-      <app-customer-detail (cancelEvent)="cancelDetail($event)" (saveEvent)="saveDetail($event)" [customer]="selectedCustomer"></app-customer-detail>
+      <app-customer-detail
+        (cancelEvent)="cancelDetail($event)"
+        (saveEvent)="saveDetail($event)"
+        (toggleOrdersEvent)="showCustomersOrder()"
+        [customer]="selectedCustomer">
+      </app-customer-detail>
     </div>
+      </div>
 
   </div>
-  <div class="container">
-    <app-customer-detail-orders [customer]="selectedCustomer"></app-customer-detail-orders>
+
+  <div class="container" *ngIf="showCustomerOrder">
+    <app-orders-list
+      [customer]="selectedCustomer" [orders]="customerOrders">
+    </app-orders-list>
   </div>
 
 </div>

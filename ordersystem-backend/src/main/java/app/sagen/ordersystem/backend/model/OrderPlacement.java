@@ -1,5 +1,6 @@
 package app.sagen.ordersystem.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,61 +29,14 @@ public class OrderPlacement {
     @Column(nullable = false)
     private ServiceType service;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    private Date dateTime;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date date;
 
 //    @JsonIgnore
 //    @Version
 //    @Column(name = "optlock", columnDefinition = "integer DEFAULT 0", nullable = false)
 //    private long version = 0L;
 
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Address getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Address destination) {
-        this.destination = destination;
-    }
-
-    public ServiceType getService() {
-        return service;
-    }
-
-    public void setService(ServiceType service) {
-        this.service = service;
-    }
-
-    public Date getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
-    }
 }

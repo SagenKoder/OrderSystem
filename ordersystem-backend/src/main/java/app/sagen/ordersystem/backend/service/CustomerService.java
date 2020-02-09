@@ -35,8 +35,8 @@ public class CustomerService {
         return customerRepository.findByEmailIgnoreCase(email);
     }
 
-    public Optional<List<Customer>> findByName(String name) {
-        return customerRepository.findByNameIgnoreCaseContaining(name);
+    public List<Customer> findByName(String name) {
+        return customerRepository.findByNameIgnoreCaseContainingOrderByName(name);
     }
 
     public List<Customer> saveAll(Collection<Customer> data) {
@@ -56,6 +56,10 @@ public class CustomerService {
 
     public void delete(long id) {
         customerRepository.deleteById(id);
+    }
+
+    public List<Customer> search(String filter) {
+        return customerRepository.findByNameIgnoreCaseContainingOrEmailIgnoreCaseContainingOrPhoneContainingOrderByName(filter, filter, filter);
     }
 
 }

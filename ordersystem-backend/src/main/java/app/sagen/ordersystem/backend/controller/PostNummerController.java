@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/zip")
-@CrossOrigin(origins = {"http://localhost:4200", "https://api.sagen.app"})
+@CrossOrigin
 public class PostNummerController {
 
     private PostNummerService postNummerService;

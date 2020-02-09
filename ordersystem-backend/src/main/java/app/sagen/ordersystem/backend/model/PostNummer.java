@@ -34,44 +34,4 @@ public class PostNummer {
 //    @Column(name = "optlock", columnDefinition = "integer DEFAULT 0", nullable = false)
 //    private long version = 0L;
 
-
-    public String getPostnummer() {
-        return postnummer;
-    }
-
-    public void setPostnummer(String postnummer) {
-        this.postnummer = postnummer;
-    }
-
-    public String getPoststed() {
-        return poststed;
-    }
-
-    public void setPoststed(String poststed) {
-        this.poststed = poststed;
-    }
-
-    public String getKommunekode() {
-        return kommunekode;
-    }
-
-    public void setKommunekode(String kommunekode) {
-        this.kommunekode = kommunekode;
-    }
-
-    public String getKommunenavn() {
-        return kommunenavn;
-    }
-
-    public void setKommunenavn(String kommunenavn) {
-        this.kommunenavn = kommunenavn;
-    }
-
-    public String getKategori() {
-        return kategori;
-    }
-
-    public void setKategori(String kategori) {
-        this.kategori = kategori;
-    }
 }

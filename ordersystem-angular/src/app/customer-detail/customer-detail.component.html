@@ -1,6 +1,6 @@
 <div *ngIf="customer">
 
-  <h2>{{customer.name | titlecase}}</h2>
+  <h2>{{(customer.id > 0 ? 'Edit ' + customer.name : "New customer") | titlecase}}</h2>
 
   <div class="form-group">
     <label for="customerName">Name</label>
@@ -16,6 +16,7 @@
   </div>
   <button type="submit" class="btn btn-primary mr-1 mb-1" (click)="saveDetails(customer)">Save</button>
   <button type="submit" class="btn btn-danger mr-1 mb-1" (click)="cancelDetails(customer)">Cancel</button>
-  <button type="submit" class="btn btn-success mb-1 float-right">View Customers Orders</button>
-
+  <button *ngIf="customer.id > 0" (click)="showCustomersOrder()" type="submit" class="btn btn-success mb-1 float-right">
+    Customers Orders
+  </button>
 </div>

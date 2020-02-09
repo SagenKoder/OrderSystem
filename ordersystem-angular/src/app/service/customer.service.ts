@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Customer } from './customer';
+import { Customer } from '../model/customer';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -14,33 +14,37 @@ export class CustomerService {
     return this.http.get<Customer[]>(this.url).toPromise();
   }
 
-  getCustomerById(customerId) {
-    return this.http.get<Customer>(
-      this.url + customerId,
-      { observe: 'response' }
+  getCustomersFiltered(filter: string) {
+    return this.http.get<Customer[]>(
+      this.url + 'search/' + encodeURI(filter)
     ).toPromise();
   }
 
-  createCustomer(customer) {
+  getCustomerById(customerId: number) {
+    return this.http.get<Customer>(
+      this.url + customerId
+    ).toPromise();
+  }
+
+  createCustomer(customer: Customer) {
+    console.log('POST ' + this.url, customer);
     return this.http.post<Customer>(
       this.url,
-      customer,
-      { observe: 'response' }
+      customer
     ).toPromise();
   }
 
-  updateCustomer(customer, customerId) {
+  updateCustomer(customer: Customer, customerId: number) {
+    console.log('PUT ' + this.url + customerId, customer);
     return this.http.put<Customer>(
       this.url + customerId,
-      customer,
-      { observe: 'response' }
+      customer
     ).toPromise();
   }
 
-  deleteCustomer(customerId) {
+  deleteCustomer(customerId: number) {
     return this.http.delete<Customer>(
-      this.url + customerId,
-      { observe: 'response' }
+      this.url + customerId
     ).toPromise();
   }
 }

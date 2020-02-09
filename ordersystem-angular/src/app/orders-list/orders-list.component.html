@@ -1,0 +1,12 @@
+<div>
+  <h2>Customers orders</h2>
+  <ul class="list-group w-100" style="width: 100%; overflow-x: hidden; height: 100%">
+    <li class="list-group-item w-100" *ngFor="let order of orders" [class.selected]="order === selectedOrder" (click)="onSelect(order)">
+      <strong>{{order.customer.name | titlecase}}</strong><br/>
+      <span>Date: {{order.date| date }}</span><br/>
+      <span>Service: {{order.service | titlecase}}</span><br/>
+      <span>Address: <br/>{{order.address.line1}}<span *ngIf="order.address.line2">, {{order.address.line2}}</span> {{order.address.zip.postnummer}}, {{order.address.zip.poststed}}</span><br/>
+      <span *ngIf="order.destination">Destination: <br/>{{order.address.line1}}<span *ngIf="order.address.line2">, {{order.address.line2}}</span> {{order.address.zip.postnummer}}, {{order.address.zip.poststed}}</span>
+    </li>
+  </ul>
+</div>

@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { Customer } from '../customer';
+import { Customer } from '../model/customer';
 
 @Component({
   selector: 'app-customer-detail',
@@ -8,10 +8,12 @@ import { Customer } from '../customer';
 })
 export class CustomerDetailComponent implements OnInit {
   @Input() customer: Customer;
+  @Input() showCustomerOrder: boolean;
   @Output() cancelEvent = new EventEmitter<Customer>();
   @Output() saveEvent = new EventEmitter<Customer>();
+  @Output() toggleOrdersEvent = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }
@@ -22,5 +24,9 @@ export class CustomerDetailComponent implements OnInit {
 
   saveDetails(customer: Customer) {
     this.saveEvent.emit(customer);
+  }
+
+  showCustomersOrder() {
+    this.toggleOrdersEvent.emit();
   }
 }
