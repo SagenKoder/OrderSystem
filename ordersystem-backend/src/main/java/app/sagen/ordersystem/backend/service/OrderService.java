@@ -54,6 +54,10 @@ public class OrderService {
         return order;
     }
 
+    public List<OrderPlacement> findAllByDate(Date date) {
+        return orderRepository.findAllByDateEqualsOrderByCustomer(date);
+    }
+
     // return dummy data
     public List<OrderPlacement> dummyFindAll() {
         List<OrderPlacement> list = new ArrayList<>();
@@ -120,5 +124,4 @@ public class OrderService {
 
         return list;
     }
-
 }
